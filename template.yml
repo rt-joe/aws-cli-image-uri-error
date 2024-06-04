@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  LambdaImageRepoUri:
+    Type: String
+    Default: public.ecr.aws/lambda/nodejs
+
+Mappings:
+  TagLookup:
+    Key:
+      Tag: 20
+
+Resources:
+  ExampleLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      ImageUri: !Sub
+        - ${LambdaImageRepoUri}:${imageTag}
+        - imageTag: !FindInMap
+            - TagLookup
+            - Key
+            - Tag

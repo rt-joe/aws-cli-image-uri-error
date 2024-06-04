@@ -1,0 +1,12 @@
+version = 0.1
+
+[default]
+[default.global]
+[default.global.parameters]
+stack_name = "aws-cli-image-uri-error"
+
+[default.deploy.parameters]
+capabilities = "CAPABILITY_IAM"
+confirm_changeset = true
+resolve_s3 = true
+resolve_image_repos = true
